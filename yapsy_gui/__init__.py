@@ -1,3 +1,6 @@
+__appname__ = "Yapsy GUI"
+__version__ = "1.0.0"
+
 from .items import PluginItem
 
 from .ui import TwinPanel

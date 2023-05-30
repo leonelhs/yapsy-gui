@@ -55,8 +55,12 @@ class MainWindow(QMainWindow):
         self.manager.show()
 
 
-if __name__ == '__main__':
+def main():
     app = QtWidgets.QApplication()
     win = MainWindow()
     win.show()
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()

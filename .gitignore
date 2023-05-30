@@ -13,6 +13,7 @@ __pycache__/
 .Python
 build/
 develop-eggs/
+yapsygui.egg-info/
 dist/
 downloads/
 eggs/
