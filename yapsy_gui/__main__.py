@@ -7,7 +7,9 @@
 #   Source: https://github.com/leonelhs/yapsy-gui
 #
 ##############################################################################
+import os
 import sys
+import os.path as osp
 from qtpy import QtWidgets
 from qtpy.QtWidgets import QMainWindow, QWidget, \
     QVBoxLayout, QLabel, QPushButton, QTextBrowser
@@ -15,6 +17,9 @@ from yapsy_gui import DialogPlugins
 
 
 # Fixme: Reload list plugins on uninstall plugin
+# Default demo plugins location path
+location = os.path.dirname(os.path.abspath(__file__))
+INSTALL_DIR = os.path.join(location, "plugins")
 
 class MainWindow(QMainWindow):
 
@@ -31,7 +36,7 @@ class MainWindow(QMainWindow):
         self.main_layout.addWidget(self.button_plugins)
         self.setCentralWidget(self.central_widget)
         # Yapsy plugin manager API is embedded in GUI
-        self.manager = DialogPlugins(self)
+        self.manager = DialogPlugins(self, INSTALL_DIR)
         self.manager.pluginsUpdate.connect(self.fetchPlugins)
         self.fetchPlugins()
 

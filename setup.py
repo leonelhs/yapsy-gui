@@ -59,7 +59,7 @@ def main():
         author_email='leonelhs@gmail.com',
         description='GUI for Yapsy plugin system',
         install_requires=get_install_requires(),
-        package_data={"yapsy_gui": ["template.html"]},
+        package_data={"yapsy_gui": ["template.html", "plugins/*.py", "plugins/*.plugin"]},
         entry_points={"console_scripts": ["yapsygui=yapsy_gui.__main__:main"]},
     )
 
