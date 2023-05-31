@@ -5,7 +5,21 @@
 #
 ##############################################################################
 import os
+import re
+
 from setuptools import setup
+
+
+def get_version():
+    filename = "yapsy_gui/__init__.py"
+    with open(filename) as f:
+        match = re.search(
+            r"""^__version__ = ['"]([^'"]*)['"]""", f.read(), re.M
+        )
+    if not match:
+        raise RuntimeError("{} doesn't contain __version__".format(filename))
+    version = match.groups()[0]
+    return version
 
 
 def get_install_requires():
@@ -51,7 +65,7 @@ def get_install_requires():
 def main():
     setup(
         name='yapsygui',
-        version='1.0',
+        version=get_version(),
         packages=['yapsy_gui', 'yapsy_gui.ui'],
         url='https://github.com/leonelhs/yapsy-gui',
         license='Apache',
