@@ -62,10 +62,27 @@ def get_install_requires():
     return install_requires
 
 
+def get_long_description():
+    with open("README.md") as f:
+        long_description = f.read()
+    try:
+        # when this package is being released
+        import github2pypi
+
+        return github2pypi.replace_url(
+            slug="leonelhs/yapsy-gui", content=long_description, branch="main"
+        )
+    except ImportError:
+        # when this package is being installed
+        return long_description
+
+
 def main():
     setup(
         name='yapsygui',
         version=get_version(),
+        long_description=get_long_description(),
+        long_description_content_type="text/markdown",
         packages=['yapsygui', 'yapsygui.ui'],
         url='https://github.com/leonelhs/yapsy-gui',
         license='Apache',
@@ -75,6 +92,20 @@ def main():
         install_requires=get_install_requires(),
         package_data={"yapsygui": ["template.html", "plugins/*.py", "plugins/*.plugin"]},
         entry_points={"console_scripts": ["yapsygui=yapsygui.__main__:main"]},
+        classifiers=[
+            "Development Status :: 5 - Production/Stable",
+            "Intended Audience :: Developers",
+            "Intended Audience :: Science/Research",
+            "Natural Language :: English",
+            "Operating System :: OS Independent",
+            "Programming Language :: Python",
+            "Programming Language :: Python :: 3.5",
+            "Programming Language :: Python :: 3.6",
+            "Programming Language :: Python :: 3.7",
+            "Programming Language :: Python :: 3.8",
+            "Programming Language :: Python :: 3.9",
+            "Programming Language :: Python :: 3 :: Only",
+        ],
     )
 
 
