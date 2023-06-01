@@ -9,17 +9,18 @@
 ##############################################################################
 import os
 import sys
-import os.path as osp
+
 from qtpy import QtWidgets
 from qtpy.QtWidgets import QMainWindow, QWidget, \
     QVBoxLayout, QLabel, QPushButton, QTextBrowser
-from yapsy_gui import DialogPlugins
+
+from yapsygui import DialogPlugins
 
 
-# Fixme: Reload list plugins on uninstall plugin
 # Default demo plugins location path
 location = os.path.dirname(os.path.abspath(__file__))
 INSTALL_DIR = os.path.join(location, "plugins")
+
 
 class MainWindow(QMainWindow):
 
@@ -37,20 +38,19 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.central_widget)
         # Yapsy plugin manager API is embedded in GUI
         self.manager = DialogPlugins(self, INSTALL_DIR)
-        self.manager.pluginsUpdate.connect(self.fetchPlugins)
-        self.fetchPlugins()
+        self.manager.connect(self.fetchPlugins)
+        self.manager.loadPlugins()
 
         self.output = QTextBrowser(self.central_widget)
         self.main_layout.addWidget(self.output)
 
-    def fetchPlugins(self):
-        for plugin in self.manager.plugins:
+    def fetchPlugins(self, plugins):
+        for plugin in plugins:
             plugin.plugin_object.context = self
             button = QPushButton(self)
             button.setText(plugin.plugin_object.name)
             button.clicked.connect(plugin.plugin_object.task)
             self.main_layout.addWidget(button)
-        self.manager.displayPlugins()
 
     # Plugin callback: make the process at plugin and it putback here the result
     def plugin_action(self, text):

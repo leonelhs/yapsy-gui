@@ -5,7 +5,8 @@ from qtpy.QtWidgets import QSplitter, QWidget
 from qtpy.QtCore import Qt
 from yapsy.PluginInfo import PluginInfo
 
-from yapsy_gui.ui import PanelPlugins, PanelDescription
+from yapsygui import PluginItem
+from yapsygui.ui import PanelPlugins, PanelDescription
 
 
 class TwinPanel(QSplitter):
@@ -52,6 +53,12 @@ class TwinPanel(QSplitter):
 
     def appendRow(self, item):
         self.model.appendRow(item)
+
+    def appendPlugins(self, plugins):
+        self.clear()
+        for plugin in plugins:
+            item = PluginItem(plugin)
+            self.appendRow(item)
 
     def clear(self):
         self.model.clear()

@@ -3,13 +3,12 @@ from abc import abstractmethod
 from qtpy.QtCore import QMetaObject, Signal
 from qtpy.QtWidgets import QDialog, QVBoxLayout
 
-from yapsy_gui.ui import TwinPanel, RowButtons
+from yapsygui.ui import TwinPanel, RowButtons
 
 TITLE = "Plugins Manager"
 
 
 class DialogPluginsBase(QDialog):
-    pluginsUpdate = Signal()
 
     def __init__(self, parent):
         super().__init__(parent)
@@ -28,6 +27,10 @@ class DialogPluginsBase(QDialog):
         QMetaObject.connectSlotsByName(self)
 
         self.setWindowTitle(self.tr(TITLE))
+
+    @property
+    def plugin(self):
+        return self.panel.plugin
 
     @abstractmethod
     def installPlugin(self):

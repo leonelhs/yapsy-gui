@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from yapsy.IPlugin import IPlugin
 from yapsy.PluginManager import PluginManager
@@ -46,4 +47,9 @@ class Manager(PluginManager):
         prefix = os.path.basename(plugin.path)
         for item in os.listdir(self.install_dir):
             if item.startswith(prefix):
-                os.remove(os.path.join(self.install_dir, item))
+                item = os.path.join(self.install_dir, item)
+                if os.path.isdir(item):
+                    shutil.rmtree(item)
+                else:
+                    os.remove(item)
+        return True

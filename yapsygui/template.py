@@ -1,26 +1,17 @@
+import os
 from string import Template
 
 from yapsy.PluginInfo import PluginInfo
 
-body = """
-<h4>$name</h4>
-<div>
-    <ul>
-        <li>Version: $version</li>
-        <li>Author: $author</li>
-        <li>Website: <a href="$website">$website</a></li>
-    </ul>
-</div>
-<div>
-    <p>$description</p>
-</div>
-"""
+dir_path = os.path.dirname(os.path.abspath(__file__))
+template = os.path.join(dir_path, "template.html")
 
 
 class PluginInfoTemplate(Template):
 
     def __init__(self):
-        super().__init__(body)
+        with open(template) as body:
+            super().__init__(body.read())
 
     def substitute(self, data: PluginInfo):
         return super().substitute(

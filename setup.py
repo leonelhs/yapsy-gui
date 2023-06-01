@@ -11,7 +11,7 @@ from setuptools import setup
 
 
 def get_version():
-    filename = "yapsy_gui/__init__.py"
+    filename = "yapsygui/__init__.py"
     with open(filename) as f:
         match = re.search(
             r"""^__version__ = ['"]([^'"]*)['"]""", f.read(), re.M
@@ -66,15 +66,15 @@ def main():
     setup(
         name='yapsygui',
         version=get_version(),
-        packages=['yapsy_gui', 'yapsy_gui.ui'],
+        packages=['yapsygui', 'yapsygui.ui'],
         url='https://github.com/leonelhs/yapsy-gui',
         license='Apache',
         author='leonel hernandez',
         author_email='leonelhs@gmail.com',
         description='GUI for Yapsy plugin system',
         install_requires=get_install_requires(),
-        package_data={"yapsy_gui": ["template.html", "plugins/*.py", "plugins/*.plugin"]},
-        entry_points={"console_scripts": ["yapsygui=yapsy_gui.__main__:main"]},
+        package_data={"yapsygui": ["template.html", "plugins/*.py", "plugins/*.plugin"]},
+        entry_points={"console_scripts": ["yapsygui=yapsygui.__main__:main"]},
     )
 
 

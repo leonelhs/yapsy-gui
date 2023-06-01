@@ -1,7 +1,7 @@
 from yapsy.IPlugin import IPlugin
 
 
-class PluginTwo(IPlugin):
+class PluginOne(IPlugin):
 
     def __init__(self):
         super().__init__()
@@ -10,6 +10,3 @@ class PluginTwo(IPlugin):
 
     def task(self):
         self.context.plugin_action("This is a text from plugin test-01")
-
-
-
