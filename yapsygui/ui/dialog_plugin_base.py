@@ -1,7 +1,8 @@
 from abc import abstractmethod
 
-from qtpy.QtCore import QMetaObject, Signal
+from qtpy.QtCore import QCoreApplication, QMetaObject
 from qtpy.QtWidgets import QDialog, QVBoxLayout
+from yapsygui.utils import findMainWindow
 
 from yapsygui.ui import TwinPanel, RowButtons
 
@@ -10,9 +11,9 @@ TITLE = "Plugins Manager"
 
 class DialogPluginsBase(QDialog):
 
-    def __init__(self, parent):
+    def __init__(self):
+        parent = findMainWindow()
         super().__init__(parent)
-        self.tr = parent.tr
         self.setModal(True)
 
         self.main_layout = QVBoxLayout(self)

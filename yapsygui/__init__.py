@@ -1,5 +1,5 @@
 __appname__ = "Yapsy GUI"
-__version__ = "1.0.3"
+__version__ = "1.1.0"
 
 from .items import PluginItem
 
@@ -10,4 +10,6 @@ from .ui import OpenFilePlugin
 from .manager import Manager, Installer
 from .template import PluginInfoTemplate
 from .dialog import DialogPlugins
-
+from .plugin_action import APlugin
+from .plugin_network import NAPlugin
+from .endpoint import Endpoint

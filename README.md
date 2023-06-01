@@ -75,6 +75,10 @@ win.show()
 sys.exit(app.exec_())
 ```            
 
+### Install 
+```bash
+pip install yapsygui
+```
 ### For install a new plugin just locate plugin descriptor
 ![Screenshot 2](./screenshots/screen02.png)
 

@@ -7,6 +7,7 @@
 #   Source: https://github.com/leonelhs/yapsy-gui
 #
 ##############################################################################
+import os.path as osp
 from yapsygui import Manager, PluginInfoTemplate
 from yapsygui.ui import DialogPluginsBase, Alert, OpenFilePlugin
 
@@ -14,11 +15,17 @@ INVALID_STRUCTURE = "Plugin structure is not valid."
 REMOVE_ERROR = "Unable to uninstall plugin."
 
 
+def getPath(path):
+    dir_path = osp.dirname(osp.abspath(path))
+    return osp.join(dir_path, "plugins")
+
+
 class DialogPlugins(DialogPluginsBase):
 
-    def __init__(self, parent, install_dir):
-        super().__init__(parent)
+    def __init__(self, install_dir):
+        super().__init__()
         self.callback = None
+        install_dir = getPath(install_dir)
         self.manager = Manager(install_dir)
         self.template = PluginInfoTemplate()
 
