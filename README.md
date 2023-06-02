@@ -63,7 +63,7 @@ win.setLayout(QVBoxLayout())
 btn_manager = QPushButton("Show Manager")
 win.layout().addWidget(btn_manager)
 
-manager = DialogPlugins(win, "./plugins")
+manager = DialogPlugins("./plugins")
 manager.connect(fetchPlugins)
 manager.loadPlugins()
 
@@ -76,12 +76,16 @@ sys.exit(app.exec_())
 ```            
 
 ### Install 
-```bash
-pip install yapsygui
+
+```console
+foo@bar:~$ pip install yapsygui
+foo@bar:~$ yapsygui
 ```
+
 ### For install a new plugin just locate plugin descriptor
-![Screenshot 2](./screenshots/screen02.png)
+<img src="https://drive.google.com/uc?export=view&id=1XtvcdVRvxMAIulBRnz47yH11UaBcpQGL"/>
 
 ### Test plugin action
-![Screenshot 1](./screenshots/screen01.png)
+<img src="https://drive.google.com/uc?export=view&id=1e71NxPSuQ_jgOCNL0zwXZcs9cRm7j60I"/>
+
 

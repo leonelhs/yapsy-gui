@@ -2,6 +2,9 @@
 .idea
 .idea/*
 
+task_make
+task_upload
+
 __pycache__/
 *.py[cod]
 *$py.class

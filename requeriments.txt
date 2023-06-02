@@ -1,4 +1,3 @@
 yapsy>=1.12.2
 qtpy>=1.11.2
-yapsygui>=1.0.0
 
