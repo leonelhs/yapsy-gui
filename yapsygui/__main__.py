@@ -31,7 +31,7 @@ win.setLayout(QVBoxLayout())
 btn_manager = QPushButton("Show Manager")
 win.layout().addWidget(btn_manager)
 
-manager = DialogPlugins(INSTALL_DIR)
+manager = DialogPlugins(win, INSTALL_DIR)
 manager.connect(fetchPlugins)
 manager.loadPlugins()
 

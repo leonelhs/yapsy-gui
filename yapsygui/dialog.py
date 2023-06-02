@@ -7,6 +7,7 @@
 #   Source: https://github.com/leonelhs/yapsy-gui
 #
 ##############################################################################
+import os
 import os.path as osp
 from yapsygui import Manager, PluginInfoTemplate
 from yapsygui.ui import DialogPluginsBase, Alert, OpenFilePlugin
@@ -17,13 +18,16 @@ REMOVE_ERROR = "Unable to uninstall plugin."
 
 def getPath(path):
     dir_path = osp.dirname(osp.abspath(path))
-    return osp.join(dir_path, "plugins")
+    dir_path = osp.join(dir_path, "plugins")
+    if not osp.exists(dir_path):
+        os.makedirs(dir_path)
+    return dir_path
 
 
 class DialogPlugins(DialogPluginsBase):
 
-    def __init__(self, install_dir):
-        super().__init__()
+    def __init__(self, parent, install_dir):
+        super().__init__(parent)
         self.callback = None
         install_dir = getPath(install_dir)
         self.manager = Manager(install_dir)
@@ -52,6 +56,8 @@ class DialogPlugins(DialogPluginsBase):
 
     def loadPlugins(self):
         try:
+            # Fixme: After install a new plugin, not always reloads the plugins
+            self.manager = Manager(self.manager.install_dir)
             self.callback(self.plugins)
         except TypeError:
             print("No plugins loader callback was defined.")
